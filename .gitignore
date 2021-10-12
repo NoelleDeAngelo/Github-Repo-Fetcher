@@ -1,3 +1,7 @@
+
+# webpack output bundle
+client/dist/bundle.js
+
 # Logs
 logs
 *.log
@@ -13,7 +17,7 @@ node_modules/
 # Tokens
 config.js
 
-client/dist/bundle.js
+
 
 
 
