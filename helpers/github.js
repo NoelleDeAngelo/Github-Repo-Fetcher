@@ -1,8 +1,18 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-let createRepoList = (repo) => {
-console.log(repo.full_name)
+let repoList=[];
+
+let addToRepoList = (item) => {
+  let repo = {
+    name:item.name,
+    language: item.language,
+    description: item.description,
+    starCount: item.stargazers_count,
+    forkCount: item.forks_count,
+    dateCreated: item.created_at
+  };
+  repoList.push(repo)
 }
 
 let getReposByOrg = (org) => {
@@ -15,8 +25,12 @@ let getReposByOrg = (org) => {
     }
   };
 
-  axios.get(`https://api.github.com/orgs/${org}/repos`, options)
-  .then((res)=> {res.data.forEach((repo)=>createRepoList(repo))})
+ return axios.get(`https://api.github.com/orgs/${org}/repos`, options)
+  .then((res)=> {
+    repoList =[];
+    res.data.forEach((item)=>addToRepoList(item));
+    return repoList;
+    })
   .catch((err)=> console.log(err));
 }
 
