@@ -20,7 +20,7 @@ let App = ()=>{
     return (
     <div>
       <h1>Github Repo Fetcher</h1>
-      <label>Look at Repos for:<input  name= 'org-name' type = 'text'></input></label>
+      <label>Look at Repos for:<input  id = 'org-name' type = 'text' value= 'NetFlix'></input></label>
       <button onClick= {handleSearch}>Search</button>
       <button onClick = {()=> console.log(repos)}>check</button>
       <RepoList  org = {org} repos= {repos}/>
