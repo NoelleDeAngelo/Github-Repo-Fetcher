@@ -1,28 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import RepoList from './RepoList.jsx'
 
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+let App = ()=>{
+  const [org, setOrg]= useState('NetFlix');
+  const [repos, setRepos]= useState([])
 
-  }
 
-  handleSearch () {
+  let handleSearch = () => {
     axios.get('/repos')
-    .then((res)=>{console.log(res.data)})
+    .then((res)=>{setRepos(res.data)})
     .catch((err)=>{console.log(err)})
   }
 
-  render () {
-    return (<div>
+
+    return (
+    <div>
       <h1>Github Repo Fetcher</h1>
       <label>Look at Repos for:<input  name= 'org-name' type = 'text'></input></label>
-      <button onClick= {()=>{this.handleSearch()}}>Search</button>
-    </div>)
-  }
+      <button onClick= {handleSearch}>Search</button>
+      <button onClick = {()=> console.log(repos)}>check</button>
+      <RepoList  org = {org} repos= {repos}/>
+    </div>
+    )
+
 }
 
 
