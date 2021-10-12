@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --mode development --watch",
-    "server": " nodemon ./server/index.js"
+    "server": " nodemon ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.4",
     "express": "^4.15.0",
     "nodemon": "^2.0.13",
     "react": "^16.4",
