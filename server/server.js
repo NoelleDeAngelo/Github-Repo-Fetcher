@@ -7,7 +7,7 @@ const github = require('../helpers/github.js')
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/repos', async (req,res)=>{
-  let repos= await github.getReposByOrg('NetFlix')
+  let repos= await github.getReposByOrg('Netflix')
   res.send(repos)
 })
 
