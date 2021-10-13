@@ -7,8 +7,13 @@ const github = require('../helpers/github.js')
 app.use(express.static(__dirname + '/../client/dist'));
 
 app.get('/repos', async (req,res)=>{
-  let repos= await github.getReposByOrg('Netflix')
+  let repos= await github.getReposByOrg('7seasllc')
   res.send(repos)
+})
+
+app.get('/commits', async (req,res)=>{
+  let commits= await github.getCommitsByRepo(req.query.owner, req.query.name)
+  res.send(commits)
 })
 
 
