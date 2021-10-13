@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import Commit from './Commit.jsx'
 
 
 
@@ -27,12 +28,16 @@ let RepoListItem = ({item})=>{
         <span className = 'forks-count'>forks: {item.forkCount}</span>
         <span className ='date-created'>Created: {item.dateCreated}</span>
       </div>
-      <Modal isOpen ={modalIsOpen}
+      <Modal
+        isOpen ={modalIsOpen}
+        contentLabel = 'Recent Commits'
         onRequestClose= {()=> setModalIsOpen(false)}
         style={{
           'overlay': {'background':'grey'},
-          'content': {'color':'black', 'width': '450px', 'margin':'auto'} }}>
+          'content': {'color':'black', 'width': '600px', 'margin':'auto'} }}>
         <span style={{'float': 'right', 'fontSize': '150%'}} onClick= {()=> setModalIsOpen(false)}>&#10006;</span>
+        <h2>Recent Commits for {item.name}</h2>
+        {commits.map((commit)=> <Commit commit= {commit}/>)}
         </Modal>
     </div>
     )
