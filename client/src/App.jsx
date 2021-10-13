@@ -6,23 +6,39 @@ import RepoList from './RepoList.jsx'
 
 
 let App = ()=>{
-  const [org, setOrg]= useState('NetFlix');
-  const [repos, setRepos]= useState([])
+  const [org, setOrg]= useState('');
+  const [repos, setRepos]= useState([]);
+  const [searchFor, setSearchFor]= useState('');
+  const [possibleOrgs, setPossibleOrgs]= useState([]);
 
 
-  let handleSearch = () => {
-    axios.get('/repos')
+  let handleGetRepos = () => {
+    setPossibleOrgs([]);
+    setSearchFor('');
+    axios.get('/repos', {params:{org:org}})
     .then((res)=>{setRepos(res.data)})
     .catch((err)=>{console.log(err)})
+  }
+
+  let handleSearchInput = (e)=> {
+    setSearchFor(e.target.value)
+    setOrg(e.target.value)
+    axios.get('/orgs', {params:{orgName:e.target.value}})
+    .then((res)=> {
+        setPossibleOrgs(res.data);
+      })
+      .catch((err)=> console.log(err));
+
   }
 
 
     return (
     <div>
       <h1>Github Repo Fetcher</h1>
-      <label>Look at Repos for:<input  id = 'org-name' type = 'text' value= 'NetFlix'></input></label>
-      <button onClick= {handleSearch}>Search</button>
-      <button onClick = {()=> console.log(repos)}>check</button>
+      <label>Fetch Repositories for:<input  id = 'org-name' type = 'text' value = {searchFor} onChange = {(e)=>{handleSearchInput(e)}}></input></label>
+      <button onClick= {handleGetRepos}>Get Repositories</button>
+      <button onClick = {()=> console.log(org)}>check</button>
+      {possibleOrgs.map(possOrg=> (<span onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</span>))}
       <RepoList  org = {org} repos= {repos}/>
     </div>
     )

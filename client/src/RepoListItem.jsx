@@ -12,7 +12,6 @@ let RepoListItem = ({item})=>{
 
 
   let handleRepoClick =(owner, name)=> {
-    console.log('clicked')
     axios.get('/commits', {params:{owner:owner, name:name}})
     .then((res)=>{setCommits(res.data); console.log(res.data); setModalIsOpen(true)} )
     .catch((err)=>{console.log(err)})

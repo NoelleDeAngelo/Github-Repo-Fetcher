@@ -34,7 +34,7 @@ let getReposByOrg = async (org) => {
           anotherPage= false;
         }
       })
-      .catch((err)=> console.log(err));
+      .catch((err)=> {console.log(err); anotherPage = false});
   }
   repoList.sort((a,b)=> b.starCount - a.starCount)
   return repoList;
@@ -68,7 +68,6 @@ let getCommitsByRepo = async (owner, name)=>{
     }
   };
 
-  let anotherPage = true;
 
   await axios.get(`https://api.github.com/repos/${owner}/${name}/commits`, options)
     .then((res)=> {
@@ -92,7 +91,27 @@ let addToCommitList = (item) => {
 
 
 
+let getOrgsByName = async(orgName)=>{
+  let possOrgList=[];
+  let options = {
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': `token ${config.TOKEN}`,
+    }
+  };
+  await axios.get(`https://api.github.com/search/users?q=${orgName}in:login type:org&per_page=5&sort=repositories`, options)
+    .then((res)=> {
+      res.data.items.map((item)=>possOrgList.push(item.login));
+      })
+      .catch((err)=> console.log(err));
+  return possOrgList;
+};
+
+
+
 module.exports = {
   getReposByOrg:getReposByOrg,
-  getCommitsByRepo:getCommitsByRepo
+  getCommitsByRepo:getCommitsByRepo,
+  getOrgsByName:getOrgsByName
+
 }
