@@ -16,11 +16,12 @@ let App = ()=>{
   const [loading, setLoading]= useState(false);
 
 
-  let handleGetRepos = () => {
+  let handleGetRepos = (inputOrg) => {
     setPossibleOrgs([]);
     setSearchFor('');
     setLoading(true);
-    axios.get('/repos', {params:{org:org}})
+    !inputOrg ? inputOrg = org :inputOrg = inputOrg;
+    axios.get('/repos', {params:{org:inputOrg}})
     .then((res)=>{setRepos(res.data), setLoading(false)})
     .catch((err)=>{console.log(err)})
   }
@@ -45,7 +46,7 @@ let App = ()=>{
         <i onClick= {handleGetRepos}class="fa fa-search" aria-hidden="true"></i>
       </div>
       <div className='poss-orgs-container'>
-        {possibleOrgs.map((possOrg, i)=> (<p className='poss-orgs' key= {i} onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</p>))}
+        {possibleOrgs.map((possOrg, i)=> (<p className='poss-orgs' key= {i} onClick={()=> { handleGetRepos(possOrg); setOrg(possOrg)}}>{possOrg}</p>))}
       </div>
 
       {loading ? <PropagateLoader color = '#5dcfb4' loading={loading} size={30} css={css`display: block; margin: 20px 200px;`}/> : <RepoList  org = {org} repos= {repos}/>}
