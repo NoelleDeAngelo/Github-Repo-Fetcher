@@ -13,7 +13,7 @@ let RepoListItem = ({item})=>{
 
   let handleRepoClick =(owner, name)=> {
     axios.get('/commits', {params:{owner:owner, name:name}})
-    .then((res)=>{setCommits(res.data); console.log(res.data); setModalIsOpen(true)} )
+    .then((res)=>{setCommits(res.data); setModalIsOpen(true)} )
     .catch((err)=>{console.log(err)})
   }
 
@@ -31,12 +31,13 @@ let RepoListItem = ({item})=>{
         isOpen ={modalIsOpen}
         contentLabel = 'Recent Commits'
         onRequestClose= {()=> setModalIsOpen(false)}
+        appElement={document.getElementById('app')}
         style={{
           'overlay': {'background':'grey'},
           'content': {'color':'black', 'width': '600px', 'margin':'auto'} }}>
         <span style={{'float': 'right', 'fontSize': '150%'}} onClick= {()=> setModalIsOpen(false)}>&#10006;</span>
         <h2>Recent Commits for {item.name}</h2>
-        {commits.map((commit)=> <Commit commit= {commit}/>)}
+        {commits.map((commit, i)=> <Commit key= {i} commit= {commit}/>)}
         </Modal>
     </div>
     )

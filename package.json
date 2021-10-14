@@ -15,16 +15,20 @@
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.5",
+    "@emotion/babel-plugin": "^11.3.0",
     "babel-loader": "^8.2.1",
+    "babel-plugin-emotion": "^11.0.0",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.4.1",
     "axios": "^0.21.4",
     "express": "^4.15.0",
     "nodemon": "^2.0.13",
     "react": "^16.14.0",
     "react-dom": "^16.4",
-    "react-modal": "^3.14.3"
+    "react-modal": "^3.14.3",
+    "react-spinners": "^0.11.0"
   }
 }

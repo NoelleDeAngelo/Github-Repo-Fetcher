@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import PropagateLoader from "react-spinners/PropagateLoader";
+import { css } from "@emotion/react";
 import RepoList from './RepoList.jsx'
+
 
 
 
@@ -10,13 +13,15 @@ let App = ()=>{
   const [repos, setRepos]= useState([]);
   const [searchFor, setSearchFor]= useState('');
   const [possibleOrgs, setPossibleOrgs]= useState([]);
+  const [loading, setLoading]= useState(false);
 
 
   let handleGetRepos = () => {
     setPossibleOrgs([]);
     setSearchFor('');
+    setLoading(true);
     axios.get('/repos', {params:{org:org}})
-    .then((res)=>{setRepos(res.data)})
+    .then((res)=>{setRepos(res.data), setLoading(false)})
     .catch((err)=>{console.log(err)})
   }
 
@@ -37,9 +42,9 @@ let App = ()=>{
       <h1>Github Repo Fetcher</h1>
       <label>Fetch Repositories for:<input  id = 'org-name' type = 'text' value = {searchFor} onChange = {(e)=>{handleSearchInput(e)}}></input></label>
       <button onClick= {handleGetRepos}>Get Repositories</button>
-      <button onClick = {()=> console.log(org)}>check</button>
-      {possibleOrgs.map(possOrg=> (<span onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</span>))}
-      <RepoList  org = {org} repos= {repos}/>
+      {possibleOrgs.map((possOrg, i)=> (<span key= {i} onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</span>))}
+      {loading ? <PropagateLoader color = '#5dcfb4' loading={loading} size={30} css={css`display: block; margin: 20px 200px;`}/> : <RepoList  org = {org} repos= {repos}/>}
+
     </div>
     )
 
