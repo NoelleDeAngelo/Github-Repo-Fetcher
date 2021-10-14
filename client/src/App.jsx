@@ -40,9 +40,14 @@ let App = ()=>{
     return (
     <div>
       <h1>Github Repo Fetcher</h1>
-      <label>Fetch Repositories for:<input  id = 'org-name' type = 'text' value = {searchFor} onChange = {(e)=>{handleSearchInput(e)}}></input></label>
-      <button onClick= {handleGetRepos}>Get Repositories</button>
-      {possibleOrgs.map((possOrg, i)=> (<span key= {i} onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</span>))}
+      <div className= 'search-container'>
+        <input placeholder= 'Find Repositories For' className='search-input' type = 'text' value = {searchFor} onChange = {(e)=>{handleSearchInput(e)}}></input>
+        <i onClick= {handleGetRepos}class="fa fa-search" aria-hidden="true"></i>
+      </div>
+      <div className='poss-orgs-container'>
+        {possibleOrgs.map((possOrg, i)=> (<p className='poss-orgs' key= {i} onClick={()=> {setSearchFor(possOrg); setOrg(possOrg)}}>{possOrg}</p>))}
+      </div>
+
       {loading ? <PropagateLoader color = '#5dcfb4' loading={loading} size={30} css={css`display: block; margin: 20px 200px;`}/> : <RepoList  org = {org} repos= {repos}/>}
 
     </div>
