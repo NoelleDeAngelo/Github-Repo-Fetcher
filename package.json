@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --mode development --watch",
+    "prod-react": "webpack --config ./webpack.config.js --mode production",
     "server": " nodemon ./server/server.js"
   },
   "repository": {
