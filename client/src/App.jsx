@@ -29,12 +29,17 @@ let App = ()=>{
   }
 
   let handleSearchInput = (e)=> {
-    setSearchFor(e.target.value)
-    axios.get('/orgs', {params:{orgName:e.target.value}})
-    .then((res)=> {
-        setPossibleOrgs(res.data);
-    })
-      .catch((err)=> console.log(err));
+    let value= e.target.value
+    setSearchFor(value)
+    if (value.length > 1) {
+       axios.get('/orgs', {params:{orgName:value}})
+        .then((res)=> {
+          setPossibleOrgs(res.data);
+        })
+        .catch((err)=> console.log(err));
+    } else{
+      setPossibleOrgs([])
+    }
   }
 
   let handleKeyPress = (e)=>{
