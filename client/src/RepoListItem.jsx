@@ -18,14 +18,19 @@ let RepoListItem = ({item})=>{
   }
 
     return (
-    <div>
-      <div onClick ={()=>handleRepoClick(item.owner, item.name)}className = 'repo-list-item'>
-        <p className = 'repo-name'>{item.name}</p>
+    <div className = 'repo-list-item'>
+      <div className = 'flex-column' onClick ={()=>handleRepoClick(item.owner, item.name)}>
+      <div  className='flex-row repo-row1'>
+        <h3 className = 'repo-name'>{item.name}</h3>
         <span className = 'language'>{item.language}</span>
-        <p className = 'repo-description'>{item.description}</p>
+      </div>
+      <p className = 'repo-description repo-row2'>{item.description}</p>
+      <div className='flex-row repo-row3'>
         <span className = 'star-count'>star count: {item.starCount}</span>
         <span className = 'forks-count'>forks: {item.forkCount}</span>
         <span className ='date-created'>Created: {item.dateCreated}</span>
+      </div>
+
       </div>
       <Modal
         isOpen ={modalIsOpen}

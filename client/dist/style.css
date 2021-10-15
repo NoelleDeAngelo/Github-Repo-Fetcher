@@ -1,11 +1,26 @@
 
-#app {
+
+.app {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  margin:0;
   font-family: 'Manrope', sans-serif;
+  color: #091f32;
+  align-items: center;
+
+}
+/* Heading  */
+.title {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.tag-line {
+  font-size: 1.2rem;
+  color: #6d7888;
+  margin-top: 0px;
+  font-weight: 500;
 }
 
 /* Search Bar */
@@ -27,7 +42,7 @@
 
 }
 
-.search-container i{
+.search-container i {
   font-size: 20px;
   padding: 3px;
   padding-left: 5px;
@@ -38,12 +53,13 @@
 }
 
 .poss-orgs-container {
-  margin-top: -8px;
+  margin-top: 2px;
   width: 200px;
   height: fit-content;
   border-radius: 1px;
   border-color: #e3e6e5;
   box-shadow: rgba(0, 0,0, .20) 0px 5px 15px;
+  align-self: center;
 }
 .poss-orgs {
   padding:10px 15px;
@@ -54,3 +70,67 @@
   padding-left: 17px;
   background-color: #e3e6e5;
 }
+
+
+/* Repo List */
+
+.repo-section {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#repo-num {
+  margin-top: 0px;
+  font-weight: 600;
+  align-self: center;
+}
+
+.repo-list-item {
+  width:85%;
+  padding: 10px 25px;
+  margin: 10px 25px;
+  box-shadow: 0 4px 10px rgb(109 120 136 / 20%);
+  border-radius: .625rem;
+  align-self: center;
+  cursor: pointer;
+
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+}
+
+.repo-row1 {
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.repo-name {
+  color: #09ada5;
+  font-size: 1.3rem;
+}
+.language {
+  margin-right: 30px;
+  font-style: italic;
+}
+
+.repo-row2 {
+  color: #6d7888;
+}
+
+.repo-description {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.repo-row3 {
+  justify-content: space-evenly;
+}
+

@@ -20,7 +20,6 @@ let App = ()=>{
     setPossibleOrgs([]);
     setSearchFor('');
     setLoading(true);
-    !inputOrg ? inputOrg = org :inputOrg = inputOrg;
     axios.get('/repos', {params:{org:inputOrg}})
     .then((res)=>{setRepos(res.data), setLoading(false)})
     .catch((err)=>{console.log(err)})
@@ -28,7 +27,6 @@ let App = ()=>{
 
   let handleSearchInput = (e)=> {
     setSearchFor(e.target.value)
-    setOrg(e.target.value)
     axios.get('/orgs', {params:{orgName:e.target.value}})
     .then((res)=> {
         setPossibleOrgs(res.data);
@@ -39,18 +37,17 @@ let App = ()=>{
 
 
     return (
-    <div>
-      <h1>Github Repo Fetcher</h1>
+    <div className= 'app'>
+      <h1 className= 'title'>Github Repo Fetcher</h1>
+      <p className= 'tag-line'>Easily find and view Repositories from all of your favorite Github Orginizations.</p>
       <div className= 'search-container'>
         <input placeholder= 'Find Repositories For' className='search-input' type = 'text' value = {searchFor} onChange = {(e)=>{handleSearchInput(e)}}></input>
-        <i onClick= {handleGetRepos}class="fa fa-search" aria-hidden="true"></i>
+        <i onClick= {()=>{handleGetRepos(searchFor); setOrg(searchFor)}}class="fa fa-search" aria-hidden="true"></i>
       </div>
       <div className='poss-orgs-container'>
         {possibleOrgs.map((possOrg, i)=> (<p className='poss-orgs' key= {i} onClick={()=> { handleGetRepos(possOrg); setOrg(possOrg)}}>{possOrg}</p>))}
       </div>
-
-      {loading ? <PropagateLoader color = '#5dcfb4' loading={loading} size={30} css={css`display: block; margin: 20px 200px;`}/> : <RepoList  org = {org} repos= {repos}/>}
-
+      {loading ? <PropagateLoader  color = '#5dcfb4' loading={loading} size={30} css={css`display: block; margin: auto;`}/> : <RepoList  org = {org} repos= {repos}/>}
     </div>
     )
 
