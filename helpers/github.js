@@ -34,7 +34,7 @@ let getReposByOrg = async (org) => {
           anotherPage= false;
         }
       })
-      .catch((err)=> {console.log(err); anotherPage = false});
+      .catch((err)=> {console.log(err); anotherPage = false;});
   }
   repoList.sort((a,b)=> b.starCount - a.starCount)
   return repoList;
