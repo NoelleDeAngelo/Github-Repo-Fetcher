@@ -80,10 +80,10 @@ let getCommitsByRepo = async (owner, name)=>{
 
 let addToCommitList = (item) => {
   let commit = {
-    title:item.commit.message,
-    committer:item.author.login,
-    dateCreated:  new Date(item.commit.author.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric' }),
-    commitHash:item.sha
+    title: item.commit.message,
+    committer: (item.author ? item.author.login : item.commit.author.name),
+    dateCreated: new Date(item.commit.author.date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric' }),
+    commitHash: item.sha
 
   };
   commitList.push(commit);
