@@ -4,19 +4,16 @@ Github Repo Fetcher is a site that allows users to find and view repositories of
 
 ### Visit the site 
 
-Github Repo Fetcher can be accessed at [http://13.52.251.209/](http://13.52.251.209/)
+Github Repo Fetcher can be accessed [here](http://13.52.251.209/).
  
 
-### Or Istall
+### Install
 
 ```bash
 $ npm install
 $ npm run prod-react
 $ npm run server
 ```
-
-
 #### Use
-
 [localhost:3000](http://localhost:3000)
 
