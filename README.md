@@ -1,6 +1,6 @@
 # Github Repo Fetcher 
 
-Github Repo Fetcher is a site that allows users to find and view repositories of Github orginizations. Clicking on a repository will bring up the most recent 25 commits for that repository. 
+Github Repo Fetcher is a site that allows users to find and view repositories of Github organizations. Clicking on a repository will bring up the most recent 25 commits for that repository. 
 
 ### Visit the site 
 
